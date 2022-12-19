@@ -1,0 +1,25 @@
+<div *transloco="let transloco ">
+  <ng-container *ngIf=" cartItems$ | async as items">
+    <mat-grid-list cols="10" rowHeight="50px">
+      <mat-grid-tile [colspan]=9><h1>{{transloco('mon-panier')}} 🛒</h1></mat-grid-tile>
+      <mat-grid-tile>
+        <button id="acceuil-button" class="button-at-end-of-grid" mat-stroked-button
+                [routerLink]="''">{{transloco('Acceuil')}}</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="margin-left-10">
+      <span id="panier-vide" *ngIf="items.length === 0 ;else panier_non_vide">{{transloco('panier-vide')}} 🕵🏻</span>
+      <ng-template #panier_non_vide>
+        <p id="total-price" *ngIf="totalPrice$ | async as totalPrice">
+          {{transloco('total-ht')}}: {{totalPrice.totalHT | currency}}
+          {{transloco('total-taxes')}} : {{totalPrice.taxes | currency}}
+        </p>
+      </ng-template>
+    </div>
+    <app-cart-item *ngFor="let item of items | orderBy:'item.name'" [cartItem]="item"
+                   (reduceItemInCartEvent)="reduceItem(item)"
+                   (removeItemInCartEvent)="removeItem(item)"
+                   (increaseItemInCartEvent)="increaseItem(item)">
+    </app-cart-item>
+  </ng-container>
+</div>

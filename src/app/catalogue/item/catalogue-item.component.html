@@ -1,0 +1,24 @@
+<mat-card *transloco="let transloco " class=" mat-card content mat-elevation-z4 card">
+
+  <mat-card-title>{{item?.name}}</mat-card-title>
+  <mat-card-content fxFlex>
+    <p>{{item?.category}}</p>
+    <p>{{item?.price | currency }}</p>
+  </mat-card-content>
+
+  <mat-card-actions fxFlexAlign="end" align="end">
+    <div *ngIf="item?.quantity===0;else article_dispo">
+      <button id="non-dispo-button" style="margin-right:20px" mat-stroked-button
+              [disabled]="item?.quantity===0">{{transloco('non-disponible')}}</button>
+    </div>
+    <ng-template #article_dispo>
+      <button id="qte-button" style="margin-right:20px" mat-stroked-button (click)="addToCart(item)"
+              [disabled]="item?.quantity===0">{{transloco('qte')}}
+        : {{item?.quantity}}</button>
+    </ng-template>
+    <button id="ajouter-button" mat-stroked-button (click)="addToCart(item)"
+            [disabled]="item?.quantity===0">{{transloco('ajouter')}}🛒
+    </button>
+  </mat-card-actions>
+</mat-card>
+

@@ -1,0 +1,40 @@
+<div *transloco="let transloco">
+  <mat-grid-list class="margin-bottom10" cols="10" rowHeight="50px">
+    <mat-grid-tile [colspan]=9><h1 class="header-catalogue">Notre catalogue ✨</h1></mat-grid-tile>
+    <mat-grid-tile>
+      <div class="button-at-end-of-grid">
+        <div *ngIf="cartArticleCount$ | async as cartArticleCount;else panier_vide">
+          <nav>
+            <button id="panier" mat-stroked-button [routerLink]="'/panier'">{{transloco('panier')}}({{cartArticleCount}}
+              )
+            </button>
+          </nav>
+        </div>
+        <ng-template #panier_vide>
+          <nav>
+            <button id="panier-vide" mat-stroked-button [routerLink]="'/panier'">{{transloco('panier-vide')}}</button>
+          </nav>
+        </ng-template>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div *ngIf="items$ | async as items">
+    <mat-grid-list cols="1">
+      <mat-toolbar class="no-padding">
+        <mat-form-field class="margin-10px" appearance="fill" style="width:100%" FloatLabelType='never'>
+          <mat-label>{{transloco('filtre')}} :</mat-label>
+          <mat-select [(ngModel)]="searchText"
+                      placeholder="categorie">
+            <mat-option *ngFor="let category of items | uniqueCategory" [value]="category">{{category}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-toolbar>
+      <div class="row" fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap=" grid">
+        <div [fxFlex]="(100/gridColumns)" fxFlex.xs="90%" fxFlex.sm="90%"
+             *ngFor="let item of items | filter : searchText">
+          <app-item [item]="item" (addToCartEventEmitter)="addItemToCart($event)"></app-item>
+        </div>
+      </div>
+    </mat-grid-list>
+  </div>
+</div>

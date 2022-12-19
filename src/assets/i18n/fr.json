@@ -1,0 +1,17 @@
+{
+  "taxes": "Taxes",
+  "prix-unitaire-ht": "prix unitaire HT",
+  "prix-unitaire-ttc": "prix unitaire TTC",
+  "mon-panier": "Mon panier",
+  "acceuil": "Acceuil",
+  "panier-vide": "Panier vide",
+  "total-ht": "Total HT",
+  "total-taxes": "Total Taxes",
+  "non-disponible": "Non disponible",
+  "qte": "Qte",
+  "ajouter": "Ajouter",
+  "notre-catalogue": "Notre catalogue",
+  "panier": "Panier",
+  "filtre": "filtre",
+  "page-not-found": "Page Not Found"
+}

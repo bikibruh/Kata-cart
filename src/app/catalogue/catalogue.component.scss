@@ -1,0 +1,51 @@
+app-item {
+  margin: 10px;
+}
+
+div h1 {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin-right: -50%;
+}
+
+div button {
+  float: right;
+}
+
+.layout-row {
+
+  display: flex;
+  align-items: stretch;
+
+}
+
+.text-inside-grid {
+  position: absolute;
+  left: 5px;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.header-catalogue {
+  width: 100% !important;
+  text-align: left !important;
+  margin-left: 30% !important;
+}
+
+.button-at-end-of-grid {
+  flex: auto;
+  width: 100%;
+  display: block;
+  margin: 10px;
+}
+
+.margin-10px {
+  margin: 10px;
+}
+
+.margin-bottom10 {
+  margin-bottom: 10px;
+}

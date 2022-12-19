@@ -1,0 +1,22 @@
+<mat-card *transloco="let transloco " class="mat-card-border">
+  <mat-card-header>
+    <mat-card-title>{{cartItem?.name}}</mat-card-title>
+    <mat-card-subtitle>Qte : {{cartItem?.quantity}} - {{transloco('taxes')}}
+      : {{cartItem?.price |TaxApplier :cartItem?.category:cartItem?.isImported : cartItem?.quantity | currency}}
+      | {{transloco('prix-unitaire-ht')}} : {{cartItem?.price | currency}}
+      ,  {{transloco('prix-unitaire-ttc')}}
+      :{{cartItem?.price |TaxAmount :cartItem?.category:cartItem?.isImported  | currency}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-button [disabled]="!cartItem?.canIncreaseQuantity" (click)="increaseItemInCart()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button (click)="reduceItemInCart()">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <button mat-button (click)="removeItemFromCart()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
